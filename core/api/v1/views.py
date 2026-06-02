@@ -41,7 +41,7 @@ def health_view(request):
 @authentication_classes([])
 @permission_classes([AllowAny])
 def metadata_view(request):
-    return Response(metadata.metadata_summary(request), status=status.HTTP_200_OK)
+    return Response(metadata.metadata_summary(), status=status.HTTP_200_OK)
 
 
 @extend_schema(
