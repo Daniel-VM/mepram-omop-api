@@ -1,5 +1,6 @@
 from core import models
 from core.api.services import db
+from drf_spectacular.views import SpectacularAPIView
 
 
 CAPABILITIES = {
@@ -13,7 +14,7 @@ CAPABILITIES = {
 }
 
 
-def metadata_summary():
+def metadata_summary(request=None):
     event_types = db.rows(
         models.FactConcept.objects.values("event_type")
         .distinct()
@@ -42,8 +43,17 @@ def metadata_summary():
         .distinct()
         .order_by("vocabulary_id")
     )
+    openapi = None
+    if request is not None:
+        try:
+            resp = SpectacularAPIView().get(request)
+            openapi = resp.data
+        except Exception:
+            openapi = None
+
     return {
         "schema": db.dashboard_schema(),
+        "openapi": openapi,
         "domains": domains,
         "event_types": [row["event_type"] for row in event_types],
         "age_groups": [row["age_group"] for row in age_groups],

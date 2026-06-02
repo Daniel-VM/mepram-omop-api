@@ -93,6 +93,7 @@ class DomainConceptResponseSerializer(serializers.Serializer):
 
 class MetadataResponseSerializer(serializers.Serializer):
     schema = serializers.CharField()
+    openapi = serializers.DictField(allow_null=True, required=False)
     domains = DomainSerializer(many=True)
     event_types = serializers.ListField(child=serializers.CharField())
     age_groups = serializers.ListField(child=serializers.CharField())
