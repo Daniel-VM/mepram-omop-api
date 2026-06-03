@@ -85,6 +85,8 @@ SPECTACULAR_SETTINGS = {
     "TITLE": "MePRAM API",
     "DESCRIPTION": "Read-only API for aggregated MePRAM dashboard data.",
     "VERSION": "v1",
+    'SCHEMA_PATH_PREFIX': 'v1',
+    'SCHEMA_PATH_PREFIX_TRIM': True,
     "SERVE_INCLUDE_SCHEMA": True,
     "SERVERS": [{"url": "/v1", "description": "MePRAM API v1"}],
     "SORT_OPERATIONS": False,
