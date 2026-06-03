@@ -4,6 +4,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
     path("", RedirectView.as_view(pattern_name="swagger-ui", permanent=False)),
+    path("openapi/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "swagger/",
         SpectacularSwaggerView.as_view(url="/openapi/"),

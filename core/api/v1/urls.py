@@ -1,10 +1,11 @@
 from django.urls import path
-
 from core.api.v1 import views
+from drf_spectacular.views import SpectacularAPIView
 
 app_name = "mepram_api"
 
 urlpatterns = [
+    path("openapi/", SpectacularAPIView.as_view(), name="schema"),
     path("health", views.health_view, name="health"),
     path("metadata", views.metadata_view, name="metadata"),
     path("capabilities", views.capabilities_view, name="capabilities"),
